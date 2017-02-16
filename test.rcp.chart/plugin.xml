@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="ChemAnalysis"
+            id="test.rcp.chart">
+      </category>
+      <view
+            name="Absorbance Chat"
+            icon="icons/sample.gif"
+            category="test.rcp.chart"
+            class="test.rcp.chart.views.AbsorbanceChartView"
+            id="test.rcp.chart.views.AbsorbanceChartView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            name="ChemAnalysis Workbench"
+            icon="icons/releng_gears.gif"
+            class="test.rcp.chart.perspective.ChemAnalysisPerspective"
+            id="test.rcp.chart.perspective.ChemAnalysisPerspective">
+      </perspective>
+   </extension>
+   <extension
+         id="test.rcp.chart.fragment"
+         point="org.eclipse.e4.workbench.model">
+      <fragment
+            apply="always"
+            uri="fragment.e4xmi">
+      </fragment>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:file">
+         <separator
+               name="test.rcp.chart.separator1">
+         </separator>
+         <command
+               commandId="test.rcp.chart.acquire"
+               label="Acquire"
+               style="push">
+         </command>
+         <command
+               commandId="test.rcp.chart.save"
+               label="Save"
+               style="push">
+         </command>
+         <command
+               commandId="test.rcp.chart.dexplore"
+               label="Toggle DExplore"
+               style="toggle">
+         </command>
+         <separator
+               name="test.rcp.chart.separator2">
+         </separator>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:help">
+         <command
+               commandId="test.rcp.chart.about"
+               label="About ChemAnalysis"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="test.rcp.chart.handlers.AboutHandler"
+            id="test.rcp.chart.about"
+            name="About">
+      </command>
+      <command
+            defaultHandler="test.rcp.chart.handlers.AquireHandler"
+            id="test.rcp.chart.acquire"
+            name="Acquire">
+      </command>
+      <command
+            defaultHandler="test.rcp.chart.handlers.SaveHandler"
+            id="test.rcp.chart.save"
+            name="Save">
+      </command>
+      <command
+            defaultHandler="test.rcp.chart.handlers.DExploreHandler"
+            id="test.rcp.chart.dexplore"
+            name="DExplore">
+      </command>
+   </extension>
+
+</plugin>

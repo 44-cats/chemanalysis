@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="test.rcp.Application">
+         </run>
+      </application>
+   </extension>
+   
+<extension id="product_test" point="org.eclipse.core.runtime.products">
+  <product application="test.rcp.application" name="ChemAnalysis Workbench v1.1">
+    <property name="appName" value="ChemAnalysis Workbench v1.1"> </property>
+    <property name="applicationXMI" value="test.rcp/Application.e4xmi"> </property>
+  </product>
+</extension>
+<extension
+      point="org.eclipse.ui.activities">
+   <activity
+         description="Exclude GUI"
+         id="activity.excludeFromGUI"
+         name="Exclude GUI">
+   </activity>
+                
+    <activityPatternBinding
+        activityId="activity.excludeFromGUI"
+        pattern="org\.eclipse\.equinox\.p2\..*">
+    </activityPatternBinding>
+</extension>
+
+</plugin>
