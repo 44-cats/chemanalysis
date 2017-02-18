@@ -38,18 +38,6 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-
-		String userHome = System.getProperty("user.home");
-		String fileSeparator = System.getProperty("file.separator");
-		String tmpFolder = System.getProperty("java.io.tmpdir");
-		String libRootFolder = new File(userHome).canWrite() ? userHome : tmpFolder;
-		String libFolderPath = libRootFolder + fileSeparator + ".jssc" + fileSeparator;
-		File dll = new File(libFolderPath);
-		try{
-			deleteDir(dll);
-		} catch(Exception e){
-			e.printStackTrace();
-		}
 	}
 	
 	private void deleteDir(File file) {

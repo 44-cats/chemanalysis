@@ -376,7 +376,6 @@ public class AbsorbanceChart {
 	}
 
 	public void handleGetData() {
-
 		for (Trace trace : demoTrace.values()) {
 			xyGraph.removeTrace(trace);
 
@@ -386,41 +385,61 @@ public class AbsorbanceChart {
 		if (serialTrace != null) {
 			xyGraph.removeTrace(serialTrace);
 		}
-
-		if (serialPort == null) {
-			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Error", "Please select a valid Port.");
-			return;
-		}
 		
-		if (intTime < 0) {
-			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Error", "Please select a valid integration time.");
-			return;
-		}
+		Thread t = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				
 
-		serialPort.clear(); // Clear any pending serial data
+				if (serialPort == null) {
+					MessageDialog.openError(Display.getCurrent().getActiveShell(), "Error", "Please select a valid Port.");
+					return;
+				}
+				
+				if (intTime < 0) {
+					MessageDialog.openError(Display.getCurrent().getActiveShell(), "Error", "Please select a valid integration time.");
+					return;
+				}
 
-		serialPort.write(""+intTime); // Write out integration time
-		serialPort.write(CARRIAGE_RETURN_CODE); // Start transfer
+				serialPort.clear(); // Clear any pending serial data
 
-		double[] x = new double[3700];
-		double[] y = new double[3700];
-		// Loop for 3700 pixels from CCD
-		for (int i = 0; i < 3700; i++) {
-			x[i] = i;
-			y[i] =  1/((getPixel() - 10000) / 10000.0d); //Get and normalize pixel
-		}
+				serialPort.write(""+intTime); // Write out integration time
+				serialPort.write(CARRIAGE_RETURN_CODE); // Start transfer
+				
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				final double[] x = new double[3700];
+				final double[] y = new double[3700];
+				// Loop for 3700 pixels from CCD
+				for (int i = 0; i < 3700; i++) {
+					x[i] = i;
+					y[i] =  1/((getPixel() - 10000) / 10000.0d); //Get and normalize pixel
+				}
 
-		CircularBufferDataProvider traceDataProvider = new CircularBufferDataProvider(false);
-		traceDataProvider.setBufferSize(3700);
-		traceDataProvider.setCurrentXDataArray(x);
-		traceDataProvider.setCurrentYDataArray(y);
+				Display.getDefault().asyncExec(new Runnable() {
+					
+					@Override
+					public void run() {
+						CircularBufferDataProvider traceDataProvider = new CircularBufferDataProvider(false);
+						traceDataProvider.setBufferSize(3700);
+						traceDataProvider.setCurrentXDataArray(x);
+						traceDataProvider.setCurrentYDataArray(y);
 
-		serialTrace = new Trace("Absorbance", xyGraph.primaryXAxis, xyGraph.primaryYAxis, traceDataProvider);
+						serialTrace = new Trace("Absorbance", xyGraph.primaryXAxis, xyGraph.primaryYAxis, traceDataProvider);
 
-		// add the trace to xyGraph
-		xyGraph.addTrace(serialTrace);
-		xyGraph.performAutoScale();
-
+						// add the trace to xyGraph
+						xyGraph.addTrace(serialTrace);
+						xyGraph.performAutoScale();
+					}
+				});
+			}
+		});
+		t.start();
 	}
 
 	// Get one pixel value from serial port
