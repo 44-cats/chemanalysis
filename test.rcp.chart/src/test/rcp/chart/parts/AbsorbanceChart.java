@@ -407,18 +407,18 @@ public class AbsorbanceChart {
 				serialPort.write(""+intTime); // Write out integration time
 				serialPort.write(CARRIAGE_RETURN_CODE); // Start transfer
 				
-				try {
-					Thread.sleep(200);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				
 				final double[] x = new double[3700];
 				final double[] y = new double[3700];
 				// Loop for 3700 pixels from CCD
 				for (int i = 0; i < 3700; i++) {
 					x[i] = i;
 					y[i] =  1/((getPixel() - 10000) / 10000.0d); //Get and normalize pixel
+				}
+				
+				try {
+					Thread.sleep(200);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
 
 				Display.getDefault().asyncExec(new Runnable() {
@@ -447,7 +447,7 @@ public class AbsorbanceChart {
 
 		String inStr1 = "0"; // Holds the serial input string
 
-		while (serialPort != null && serialPort.available() < 0) // Wait until
+		while (serialPort != null && serialPort.available() <= 0) // Wait until
 			// there is
 			// something
 			// in
