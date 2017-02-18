@@ -16,7 +16,7 @@ import org.osgi.framework.Bundle;
 
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
-	private static final String PERSPECTIVE_ID = "test.rcp.chart.perspective.ChemAnalysisPerspective"; //$NON-NLS-1$
+	private static final String PERSPECTIVE_ID = "test.rcp.chart.perspective"; //$NON-NLS-1$
 
 	public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(
 			IWorkbenchWindowConfigurer configurer) {

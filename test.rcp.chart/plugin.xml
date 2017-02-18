@@ -16,21 +16,24 @@
       </view>
    </extension>
    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="test.rcp.chart.editor.DumyCSVOpenEditor"
+            default="true"
+            filenames=".csv"
+            id="test.rcp.chart.editor"
+            launcher="test.rcp.chart.editor.CSVLauncher"
+            name="Chat CSV">
+      </editor>
+   </extension>
+   <extension
          point="org.eclipse.ui.perspectives">
       <perspective
             name="ChemAnalysis Workbench"
             icon="icons/releng_gears.gif"
             class="test.rcp.chart.perspective.ChemAnalysisPerspective"
-            id="test.rcp.chart.perspective.ChemAnalysisPerspective">
+            id="test.rcp.chart.perspective">
       </perspective>
-   </extension>
-   <extension
-         id="test.rcp.chart.fragment"
-         point="org.eclipse.e4.workbench.model">
-      <fragment
-            apply="always"
-            uri="fragment.e4xmi">
-      </fragment>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -91,6 +94,24 @@
             id="test.rcp.chart.dexplore"
             name="DExplore">
       </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="test.rcp.chart.perspective">
+         <view
+               closeable="true"
+               id="test.rcp.chart.views.AbsorbanceChartView"
+               minimized="false"
+               moveable="true"
+               ratio="0.9f"
+               relationship="stack"
+               relative="org.eclipse.ui.editorss"
+               showTitle="true"
+               standalone="false"
+               visible="true">
+         </view>
+      </perspectiveExtension>
    </extension>
 
 </plugin>

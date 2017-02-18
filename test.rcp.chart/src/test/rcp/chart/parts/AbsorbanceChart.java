@@ -88,9 +88,6 @@ public class AbsorbanceChart {
 	private int intTime = -1;
 	private boolean demoMode = false;
 
-	private IPerspectiveDescriptor demo;
-	private IPerspectiveDescriptor chart;
-	
 	private static AbsorbanceChart instance;
 	public static AbsorbanceChart getInstance() {
 		return instance;
@@ -102,8 +99,6 @@ public class AbsorbanceChart {
 	@PostConstruct
 	public void createComposite(Composite parent) {
 		instance = this;
-		demo = PlatformUI.getWorkbench().getPerspectiveRegistry().findPerspectiveWithId("test.rcp.perspective.demo");
-		chart = PlatformUI.getWorkbench().getPerspectiveRegistry().findPerspectiveWithId("test.rcp.perspective");
 //		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 //
 //		if (modelService == null) {
@@ -286,8 +281,6 @@ public class AbsorbanceChart {
 		demoModeUI();
 
 		if (demoMode) {
-			if (demo != null)
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().setPerspective(demo);
 			try {
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.eclipse.ui.navigator.ProjectExplorer");
 			} catch (PartInitException e1) {
@@ -300,8 +293,6 @@ public class AbsorbanceChart {
 				serialTrace = null;
 			}
 		} else {
-			if (chart != null)
-				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().setPerspective(chart);
 			for(IViewReference v : PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getViewReferences()){
 				if(v.getId().equals("org.eclipse.ui.navigator.ProjectExplorer"))
 					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().hideView(v);

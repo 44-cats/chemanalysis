@@ -33,14 +33,10 @@ public class ChemAnalysisPerspective implements IPerspectiveFactory {
 		// Creates the overall folder layout.
 		// Note that each new Folder uses a percentage of the remaining
 		// EditorArea.
-		factory.setEditorAreaVisible(false);
-		IFolderLayout topLeft2 = factory.createFolder("topLeft2", // NON-NLS-1
-				IPageLayout.LEFT, 0.9f, factory.getEditorArea());
+		factory.setEditorAreaVisible(true);
 		IFolderLayout topLeft = factory.createFolder("topLeft", // NON-NLS-1
-				IPageLayout.LEFT, 0.25f, "topLeft2");
-		topLeft2.addView(AbsorbanceChartView.ID);
+				IPageLayout.LEFT, 0.25f, factory.getEditorArea());
 		topLeft.addPlaceholder("org.eclipse.ui.navigator.ProjectExplorer");
-
 	}
 
 	private void addActionSets() {
