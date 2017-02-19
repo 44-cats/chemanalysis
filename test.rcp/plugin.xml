@@ -16,6 +16,10 @@
   <product application="test.rcp.application" name="ChemAnalysis Workbench v1.1">
     <property name="appName" value="ChemAnalysis Workbench v1.1"> </property>
     <property name="applicationXMI" value="test.rcp/Application.e4xmi"> </property>
+    <property
+          name="windowImages"
+          value="icons/software_16.gif,icons/software_32.gif,icons/software_48.gif,icons/software_64.gif,icons/software_128.gif">
+    </property>
   </product>
 </extension>
 <extension

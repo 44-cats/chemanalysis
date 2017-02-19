@@ -3,17 +3,16 @@
 
 <product name="ChemAnalysis Workbench v1.1" id="test.rcp.product_test" application="test.rcp.application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
+
    <configIni use="default">
    </configIni>
 
    <launcherArgs>
-      <programArgs>-consoleLog -clean -deletePersistedState
-      </programArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
 
-   <windowImages/>
+   <windowImages i16="/test.rcp/icons/software_16.gif" i32="/test.rcp/icons/software_32.gif" i48="/test.rcp/icons/software_48.gif" i64="/test.rcp/icons/software_64.gif" i128="/test.rcp/icons/software_128.gif"/>
 
    <splash
       location="test.rcp" />
@@ -25,8 +24,10 @@
       </win>
    </launcher>
 
+
    <vm>
    </vm>
+
 
    <plugins>
       <plugin id="com.ibm.icu"/>
@@ -48,12 +49,12 @@
       <plugin id="org.eclipse.core.filebuffers"/>
       <plugin id="org.eclipse.core.filesystem"/>
       <plugin id="org.eclipse.core.filesystem.java7" fragment="true"/>
-      <plugin id="org.eclipse.core.filesystem.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.core.filesystem.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.jobs"/>
       <plugin id="org.eclipse.core.resources"/>
-      <plugin id="org.eclipse.core.resources.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.resources.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.core.resources.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.runtime"/>
       <plugin id="org.eclipse.core.runtime.compatibility.registry" fragment="true"/>
       <plugin id="org.eclipse.draw2d"/>
@@ -94,8 +95,8 @@
       <plugin id="org.eclipse.equinox.preferences"/>
       <plugin id="org.eclipse.equinox.registry"/>
       <plugin id="org.eclipse.equinox.security"/>
-      <plugin id="org.eclipse.equinox.security.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.equinox.security.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.equinox.security.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.equinox.util"/>
       <plugin id="org.eclipse.help"/>
       <plugin id="org.eclipse.jface"/>
@@ -108,8 +109,8 @@
       <plugin id="org.eclipse.osgi.compatibility.state" fragment="true"/>
       <plugin id="org.eclipse.osgi.services"/>
       <plugin id="org.eclipse.swt"/>
-      <plugin id="org.eclipse.swt.win32.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.swt.win32.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.swt.win32.win32.x86_64" fragment="true"/>
       <plugin id="org.eclipse.team.core"/>
       <plugin id="org.eclipse.team.ui"/>
       <plugin id="org.eclipse.text"/>
