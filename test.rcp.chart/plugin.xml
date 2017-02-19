@@ -8,7 +8,7 @@
             id="test.rcp.chart">
       </category>
       <view
-            name="Absorbance Chat"
+            name="UV-Vis"
             icon="icons/sample.gif"
             category="test.rcp.chart"
             class="test.rcp.chart.views.AbsorbanceChartView"
@@ -23,7 +23,7 @@
             filenames=".csv"
             id="test.rcp.chart.editor"
             launcher="test.rcp.chart.editor.CSVLauncher"
-            name="Chat CSV">
+            name="CSV Chart">
       </editor>
    </extension>
    <extension
