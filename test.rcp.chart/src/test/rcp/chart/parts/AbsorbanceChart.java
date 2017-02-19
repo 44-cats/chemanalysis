@@ -455,15 +455,17 @@ public class AbsorbanceChart {
 		{
 			try {
 				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} catch (InterruptedException e) {}
 		}
 
 		do {
 			if (serialPort != null)
 				inStr1 = serialPort.readStringUntil(CARRIAGE_RETURN_CODE);
+			if(inStr1==null){
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {}
+			}
 		} while (inStr1 == null);
 
 		return (Integer.parseInt(inStr1.trim()));
